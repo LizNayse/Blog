@@ -10,5 +10,8 @@
 <div style="text-align: center;">
     <a href="{% url 'Home' %}">Home</a> | <a href="{% url 'Login' %}">Login</a> | <a href="{% url 'Registro' %}">Sign up</a> | <a href="{% url 'Logout' %}">Logout</a>
 </div>
+{% if mensaje %}
+<h1>{{ mensaje }}</h1>
+{% endif %}
 </body>
 </html>

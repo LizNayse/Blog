@@ -45,3 +45,7 @@ def registro(request):
 
 def home(request):
     return render(request, "AppLogin/home.html")
+
+def logout_request(request):
+    logout(request)
+    return render(request, "AppLogin/home.html", {"mensaje": "Te deslogeaste"})

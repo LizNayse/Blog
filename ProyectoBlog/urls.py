@@ -23,5 +23,5 @@ urlpatterns = [
     path('login', views.login_request, name="Login"),
     path('registro', views.registro, name="Registro"),
     path('home', views.home, name="Home"),
-    path('logout', LogoutView.as_view(template_name='AppLogin/home.html'), name="Logout")
+    path('logout', views.logout_request, name="Logout")
 ]
