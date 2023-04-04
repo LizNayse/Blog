@@ -55,4 +55,7 @@ def logout_request(request):
     return redirect(reverse('Home'))
 
 def posts(request):
-    return render(request, "AppLogin/posts.html")
+    if request.user.is_authenticated and request.user.is_staff:
+        return render(request, "AppLogin/posts.html")
+    else:
+        return redirect(reverse('Home'))
