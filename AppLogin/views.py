@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from AppLogin.forms import UserRegisterForm
+from django.urls import reverse
 
 # Create your views here.
 def login_request(request):
@@ -44,8 +45,8 @@ def registro(request):
     return render(request, "AppLogin/registro.html", {"form":form})
 
 def home(request):
-    return render(request, "AppLogin/home.html")
+    return render(request, "AppLogin/home.html", {"logeado":request.user.is_authenticated})
 
 def logout_request(request):
     logout(request)
-    return render(request, "AppLogin/home.html", {"mensaje": "Te deslogeaste"})
+    return redirect(reverse('Home'))
