@@ -48,8 +48,11 @@ def registro(request):
     return render(request, "AppLogin/registro.html", {"form":form})
 
 def home(request):
-    return render(request, "AppLogin/home.html", {"logeado":request.user.is_authenticated})
+    return render(request, "AppLogin/home.html", {"logeado":request.user.is_authenticated, "es_admin":request.user.is_staff})
 
 def logout_request(request):
     logout(request)
     return redirect(reverse('Home'))
+
+def posts(request):
+    return render(request, "AppLogin/posts.html")

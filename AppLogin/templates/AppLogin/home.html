@@ -12,6 +12,9 @@
     {% if not logeado %} 
         <a href="{% url 'Login' %}">Login</a> | <a href="{% url 'Registro' %}">Sign up</a> 
     {% else %}
+        {% if es_admin %}
+            <a href="{% url 'Posts' %}">Posts</a>
+        {% endif %}
         <a href="{% url 'Logout' %}">Logout</a>
     {% endif %}
 </div>
