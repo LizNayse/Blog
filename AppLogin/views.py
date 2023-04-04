@@ -42,3 +42,6 @@ def registro(request):
         form = UserRegisterForm()
     
     return render(request, "AppLogin/registro.html", {"form":form})
+
+def home(request):
+    return render(request, "AppLogin/home.html")
