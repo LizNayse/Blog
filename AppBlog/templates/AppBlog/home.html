@@ -13,7 +13,7 @@
         <a href="{% url 'Login' %}">Login</a> | <a href="{% url 'Registro' %}">Sign up</a> 
     {% else %}
         {% if es_admin %}
-            <a href="{% url 'Posts' %}">Posts</a>
+            <a href="{% url 'Posts' %}">Crear Entrada</a>
         {% endif %}
         <a href="{% url 'Logout' %}">Logout</a>
     {% endif %}
@@ -21,5 +21,12 @@
 {% if mensaje %}
 <h1>{{ mensaje }}</h1>
 {% endif %}
+{% for post in posts %}
+<li>
+    <a href="{% url 'Posteo' post.id %}">
+        {{ post }}
+    </a>
+</li>
+{% endfor %}
 </body>
 </html>
