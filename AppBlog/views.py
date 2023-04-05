@@ -17,11 +17,17 @@ def posts(request):
             post = Posteo (titulo=titulo, contenido=contenido, autor=request.user.username)
             post.save()
             return redirect(reverse('Home'))
-        return render(request, "AppBlog/posts.html")
+        return render(request, "AppBlog/crear_post.html")
     else:
         return redirect(reverse('Home'))
-    
+
+
 def post(request, post_id):
     posteo = Posteo.objects.get(id=post_id)
-    print(posteo)
-    return HttpResponse(posteo)
+    return render(request, "AppBlog/post.html", { "es_admin": request.user.is_staff, "post":posteo })
+
+
+def borrar_post(request, post_id):
+    posteo = Posteo.objects.get(id=post_id)
+    posteo.delete()
+    return redirect(reverse('Home'))
