@@ -23,9 +23,12 @@
 
 {% if post.comentario_set.count > 0 %}
     {% for comentario in post.comentario_set.all %}
-    <li>
-        {{ comentario }}
-    </li>
+        <li>
+            {{ comentario }}
+        </li>
+        {% if es_admin %}
+            <a href="{% url 'BorrarComentario' comentario.id %}">Borrar!</a>
+        {% endif %}
     {% endfor %}
 {% else %}
     <h1>No hay comentarios :(</h1>

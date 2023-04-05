@@ -43,3 +43,10 @@ def comentar_post(request, post_id):
     comentario = Comentario (post = posteo, contenido = contenido, autor = request.user.username)
     comentario.save()
     return redirect(reverse('Posteo', kwargs={"post_id": post_id}))
+
+
+def borrar_comentario(request, comentario_id):
+    comentario = Comentario.objects.get(id=comentario_id)
+    posteo = comentario.post
+    comentario.delete()
+    return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
