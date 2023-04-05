@@ -47,15 +47,6 @@ def registro(request):
     
     return render(request, "AppLogin/registro.html", {"form":form})
 
-def home(request):
-    return render(request, "AppLogin/home.html", {"logeado":request.user.is_authenticated, "es_admin":request.user.is_staff})
-
 def logout_request(request):
     logout(request)
     return redirect(reverse('Home'))
-
-def posts(request):
-    if request.user.is_authenticated and request.user.is_staff:
-        return render(request, "AppLogin/posts.html")
-    else:
-        return redirect(reverse('Home'))
