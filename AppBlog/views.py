@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Posteo
+from .models import Posteo, Comentario
 from django.http import HttpResponse
 
 # Create your views here.
@@ -22,12 +22,24 @@ def posts(request):
         return redirect(reverse('Home'))
 
 
+def puede_comentar_post(request):
+    return request.user.is_authenticated and not request.user.is_staff
+
+
 def post(request, post_id):
     posteo = Posteo.objects.get(id=post_id)
-    return render(request, "AppBlog/post.html", { "es_admin": request.user.is_staff, "post":posteo })
+    return render(request, "AppBlog/post.html", { "es_admin": request.user.is_staff, "post":posteo , "puede_comentar": puede_comentar_post(request) })
 
 
 def borrar_post(request, post_id):
     posteo = Posteo.objects.get(id=post_id)
     posteo.delete()
     return redirect(reverse('Home'))
+
+
+def comentar_post(request, post_id):
+    posteo = Posteo.objects.get(id=post_id)
+    contenido = request.POST['contenido']
+    comentario = Comentario (post = posteo, contenido = contenido, autor = request.user.username)
+    comentario.save()
+    return redirect(reverse('Posteo', kwargs={"post_id": post_id}))
