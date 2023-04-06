@@ -59,3 +59,10 @@ def responder_comentario(request, comentario_id):
     respuesta = RespuestaComentario (comentario = comentario, contenido = contenido, autor = request.user.username)
     respuesta.save()
     return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
+
+
+def borrar_respuesta(request, comentario_id):
+    comentario = Comentario.objects.get(id=comentario_id)
+    posteo = comentario.post
+    comentario.respuestacomentario.delete()
+    return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))

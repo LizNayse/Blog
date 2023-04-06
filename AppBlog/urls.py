@@ -9,5 +9,6 @@ urlpatterns = [
     path('borrarpost/<int:post_id>', borrar_post, name="BorrarPost"),
     path('comentarpost/<int:post_id>', comentar_post, name="ComentarPost"),
     path('borrarcomentario/<int:comentario_id>', borrar_comentario, name="BorrarComentario"),
-    path('respondercomentario/<int:comentario_id>', responder_comentario, name="ResponderComentario")
+    path('respondercomentario/<int:comentario_id>', responder_comentario, name="ResponderComentario"),
+    path('borrarrespuesta/<int:comentario_id>', borrar_respuesta, name="BorrarRespuesta")
 ]

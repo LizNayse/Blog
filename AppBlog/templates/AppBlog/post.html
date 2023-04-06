@@ -32,7 +32,10 @@
         {% if comentario.respuestacomentario %}
             <ul>
                 <li>
-                    Respuesta: {{ comentario.respuestacomentario }} 
+                    Respuesta: {{ comentario.respuestacomentario }}
+                    {% if es_admin %}
+                        <a href="{% url 'BorrarRespuesta' comentario.id %}">Borrar!</a>
+                    {% endif %}
                 </li>
             </ul>
         {% elif es_admin %}
