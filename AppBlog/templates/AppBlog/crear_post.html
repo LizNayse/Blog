@@ -1,8 +1,12 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
-    <form enctype="multipart/form-data" action="{% url 'Posts' %}" method="POST">
+<div style="text-align: center; margin-top:4%; margin-bottom:4%;">
+    <form class="form-control" enctype="multipart/form-data" action="{% url 'Posts' %}" method="POST" style="padding:2%; max-width: 50%; margin: auto;">
         {% csrf_token %}
             {{ form.as_p }}
-        <input type="submit" value="Publicar"/>
+        
+        <br>
+        <input class="btn btn-primary" type="submit" value="Publicar"/>
     </form>
+</div>
 {% endblock %}

@@ -13,5 +13,6 @@ urlpatterns = [
     path('borrarrespuesta/<int:comentario_id>', borrar_respuesta, name="BorrarRespuesta"),
     path('perfil', perfil, name="VerPerfil"),
     path('editardatos', editar_datos, name="EditarDatos"),
-    path('cambiarcontrasenia', cambiar_contrasenia, name="CambiarContrasenia")
+    path('cambiarcontrasenia', cambiar_contrasenia, name="CambiarContrasenia"),
+    path('acercade', acerca_de, name="AcercaDe")
 ]

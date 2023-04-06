@@ -24,7 +24,7 @@ def login_request(request):
                 return render(request, "AppLogin/login.html", {"mensaje":"Datos incorrectos", 'form':form})
         else:
             
-            return render(request, "AppLogin/login.html", {"mensaje":"Formulario incorrectos", 'form':form})
+            return render(request, "AppLogin/login.html", {"mensaje":"Contraseña o nombre de usuario incorrectos", 'form':form})
 
     return render(request, "AppLogin/login.html", {'form':form})
 

@@ -3,20 +3,19 @@
     {% load static %}
     {% static "" as baseUrl %}
     {% if form %}
-        <h1>Editar perfil</h1>
-        <form enctype="multipart/form-data" action="{% url 'EditarDatos' %}" method="POST">
-            {% csrf_token %}
-            Nombre: {{ perfil.username }}
-            {{ form.as_p }}
-            <input type="submit" value="Guardar"/>
-        </form>
+        <div style="max-width:600px; margin:2% auto 2% auto; padding:8px 9px;">
+            <h2>Editar perfil</h2><br>
+            <form class="form-control" enctype="multipart/form-data" action="{% url 'EditarDatos' %}" method="POST">
+                {% csrf_token %}
+                <h3 style="margin:2% none 2% none">Nombre: <b>{{ perfil.username }}</h3>
+                {{ form.as_p }}
+                <div style="text-align:right; padding:4%">
+                    <input class="btn btn-primary" type="submit" value="Guardar" style="width:200px"/>
+                </div>
+            </form>
+        </div>
     {% else %}
-        <h1>Perfil</h1>
-        {{ perfil }}
-        {% if perfil.imagen %}
-            <img src="{{ baseUrl }}{{perfil.imagen.name}}"></img>
-        {% endif %}
-        <a href="{% url 'EditarDatos' %}">Editar datos</a>
-        <a href="{% url 'CambiarContrasenia' %}">Cambiar contraseña</a>
+        {% load temploader %}
+        {% perfil_template perfil %}
     {% endif %}
 {% endblock %}

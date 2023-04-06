@@ -114,3 +114,6 @@ def cambiar_contrasenia(request):
             update_session_auth_hash(request, usuario)
             return redirect(reverse('VerPerfil'))
     return render(request, "AppBlog/cambiar_contrasenia.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "form": form })
+
+def acerca_de(request):
+    return render(request, "AppBlog/about_us.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "perfil": request.user })

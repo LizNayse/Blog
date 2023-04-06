@@ -1,11 +1,15 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
-    <form action="" method="POST">
+<div style="text-align: center; margin-top:4%; margin-bottom:4%;">
+    <form class="form-control" action="" method="POST" style="padding:2%; max-width: 50%; margin: auto;">
         {% csrf_token %}
             {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Iniciar sesión</button>
     </form>
     {% if mensaje %}
-        <h1>{{ mensaje }}</h1>
+        <br>
+        <h5 style="color:red">{{ mensaje }}</h5>
+        <br>
     {% endif %}
+</div>
 {% endblock %}

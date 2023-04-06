@@ -1,11 +1,15 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
-    <form action="" method="POST">
+<div style="text-align: center; margin-top:2%; margin-bottom:4%;">
+    <h3>¡Bienvenido/a!</h3>
+    <h5>Completa por favor todos los campos a continuación para registrarte:</h5><br>
+    <form class="form-control" action="" method="POST" style="padding:2%; max-width: 50%; margin: auto;">
         {% csrf_token %}
             {{ form.as_p }}
-        <button type="submit">Registrarme</button>
+        <br><button class="btn btn-primary" type="submit">Registrarme</button>
     </form>
     {% if mensaje %}
         <h1>{{ mensaje }}</h1>
     {% endif %}
+</div>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+{% static "" as baseUrl %}
+<div style="max-width:600px; margin:2% auto 2% auto;">
+    <div class="row" style="background-color: #f0f0f0; border-radius: 30px; padding:5px">
+        <div style="position:relative; width:200px">
+            {% if perfil.imagen %}
+                <img class="card-img-top" style="overflow-clip-margin: content-box; overflow: clip; text-align: left; width:200px; height:200px; border-radius: 50%;" src="{{ baseUrl }}{{perfil.imagen.name}}"></img>
+            {% endif %}
+        </div>
+        <div style="position:relative; max-width:400px; padding-left:5%;">
+            <h2 style="margin-top:5%">{{ perfil.username }}</h2>
+            <h6 class="text-muted">{{ perfil.descripcion }}</h6>
+            <a href="{{ perfil.link }}" style="text-decoration: none; font-size:small" target="_blank">Visita mi página personal</a>
+        </div>
+    </div>
+    <div style="text-align: right; margin-top:5%">
+        <a class="btn btn-primary" href="{% url 'EditarDatos' %}">Editar datos</a>
+        <a class="btn btn-primary" href="{% url 'CambiarContrasenia' %}">Cambiar contraseña</a>
+    </div>
+</div>
