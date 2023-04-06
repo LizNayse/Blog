@@ -22,12 +22,13 @@
 
                         {% if post.comentario_set.count > 0 %}
                             {% for comentario in post.comentario_set.all %}
-                                <li>
-                                    {{ comentario }}
-                                    {% if es_admin %}
-                                        <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'BorrarComentario' comentario.id %}">Borrar!</a>
-                                    {% endif %}
-                                </li>
+                                {% load temploader %}
+                                {% comentario_template comentario %}
+                                {% if es_admin %}
+                                <div>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'BorrarComentario' comentario.id %}">Borrar!</a>
+                                </div>
+                                {% endif %}
                                 {% if comentario.respuestacomentario %}
                                     <ul>
                                         <li>

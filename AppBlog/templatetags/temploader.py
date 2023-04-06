@@ -13,3 +13,7 @@ def post_template_reducido(post):
 @register.inclusion_tag("AppBlog/perfil_template.html")
 def perfil_template(usuario):
     return {"perfil":usuario}
+
+@register.inclusion_tag("AppBlog/comentario_template.html")
+def comentario_template(comentario):
+    return {"comentario":comentario}
