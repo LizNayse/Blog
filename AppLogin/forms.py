@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Usuario
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -8,6 +9,6 @@ class UserRegisterForm(UserCreationForm):
     password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = Usuario
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:"" for k in fields}

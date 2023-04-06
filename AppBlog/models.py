@@ -18,7 +18,6 @@ class Comentario(models.Model):
         Posteo,
         on_delete=models.CASCADE
     )
-
     contenido=models.CharField(max_length=5000)
     fecha=models.DateTimeField(default=datetime.datetime.now)
     autor=models.CharField(max_length=256)

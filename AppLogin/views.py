@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from AppLogin.forms import UserRegisterForm
 from django.urls import reverse
@@ -42,7 +41,6 @@ def registro(request):
             contrasenia = form.cleaned_data.get('password1')
             user = authenticate(username=usuario, password=contrasenia)
             login(request, user)
-
             return redirect(reverse('Home'))
     
     return render(request, "AppLogin/registro.html", {"form":form})

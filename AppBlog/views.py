@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth import update_session_auth_hash
+from .forms import CrearPostForm, EditarDatosForm, CambiarContraseniaForm
 from .models import Posteo, Comentario, RespuestaComentario
-from django.http import HttpResponse
-from .forms import CrearPostForm
+
 
 # Create your views here.
 def home(request):
@@ -72,3 +73,44 @@ def borrar_respuesta(request, comentario_id):
     posteo = comentario.post
     comentario.respuestacomentario.delete()
     return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
+
+
+def perfil(request):
+    return render(request, "AppBlog/perfil.html", { "perfil": request.user })
+
+
+def editar_datos(request):
+    usuario = request.user
+    datos_usuario = {
+            'email': usuario.email,
+            'imagen': usuario.imagen,
+            'descripcion': usuario.descripcion,
+            'link': usuario.link
+    }
+    if request.method == "POST":
+        form = EditarDatosForm(request.POST, request.FILES, initial=datos_usuario)
+        if form.is_valid():
+            nuevo_email = form.cleaned_data.get('email')
+            nueva_descripcion = form.cleaned_data.get('descripcion')
+            nuevo_link = form.cleaned_data.get('link')
+            nueva_imagen = form.cleaned_data.get('imagen')
+            usuario.email = nuevo_email
+            usuario.descripcion = nueva_descripcion
+            usuario.link = nuevo_link
+            usuario.imagen = nueva_imagen
+            usuario.save()
+            return redirect(reverse('VerPerfil'))
+    else:
+        form = EditarDatosForm(initial=datos_usuario)
+    return render(request, "AppBlog/perfil.html", { "perfil": usuario, 'form': form })
+
+
+def cambiar_contrasenia(request):
+    usuario = request.user
+    form = CambiarContraseniaForm(usuario, request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, usuario)
+            return redirect(reverse('VerPerfil'))
+    return render(request, "AppBlog/cambiar_contrasenia.html", { 'form': form })
