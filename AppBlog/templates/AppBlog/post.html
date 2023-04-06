@@ -1,11 +1,10 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <section class="mb-5">
                     <figure class="mb-4">
-                        <img class="img-fluid rounded" style="border:1px solid #000000;" src="{{ baseUrl }}{{post.imagen.name}}"></img>
+                        <img class="img-fluid rounded" style="border:1px solid #000000; object-fit: contain; width:100%; height:100%;" src="{{ baseUrl }}{{post.imagen.name}}"></img>
                     </figure>
                     {% load temploader %}
                     {% post_template post %}
@@ -42,7 +41,7 @@
                                     <form action="{% url 'ResponderComentario' comentario.id %}" method="POST">
                                         {% csrf_token %}
                                         <p>Respuesta<textarea class="form-control" rows="2" name="contenido"></textarea></p>
-                                        <input type="submit" value="Responder"/>
+                                        <input class="btn btn-primary" type="submit" value="Responder"/>
                                     </form>
                                 {% endif %}
                             {% endfor %}
@@ -52,10 +51,11 @@
                     </div>
                 </div>
             </section>
-                {% if es_admin %}
-                    <a class="btn btn-primary" href="{% url 'BorrarPost' post.id %}">Borrar articulo</a>
-                {% endif %}
+                <div style="margin-bottom: 5%; text-align: right;">
+                    {% if es_admin %}
+                        <a class="btn btn-primary" style="background-color: red;" href="{% url 'BorrarPost' post.id %}">Borrar artículo</a>
+                    {% endif %}
+                </div>
             </div>
-        </div>
     </div>
 {% endblock %}

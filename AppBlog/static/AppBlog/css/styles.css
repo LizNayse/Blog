@@ -11349,4 +11349,25 @@ textarea.form-control-lg {
 	  border-color: #ff1717;
 	  box-shadow: 0 0 10px #ff4040;
 	}
+
+  /* About US CSS */
+  .about-us{
+    height: 100vh;
+    width: 100%;
+    padding: 90px 0;
+    background: #ddd;
+  }
+  .pic{
+    height: auto;
+    width:  302px;
+    border-radius: 50%;
+  }
+  .about{
+    width: 1130px;
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }

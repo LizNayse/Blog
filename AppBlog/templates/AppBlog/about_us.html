@@ -1,13 +1,20 @@
 {% extends "AppBlog/base.html" %}
+{% load static %}
+{% static "" as baseUrl %}
 {% block content %}
-<div style="max-width:600px; margin:3% auto 5% auto">
-    <h1>Acerca de</h1>
-    <form class="form-control" action="{% url 'CambiarContrasenia' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div style="text-align:right; padding:4%">
-            <input class="btn btn-primary" type="submit" value="Cambiar contraseña" style="width:200px"/>
-        </div>  
-    </form>
+<div style="max-width:600px; margin:2% auto 2% auto; padding:8px 9px;">
+  <section class="about-us">
+    <div class="about">
+      <img src="{% static 'AppBlog/assets/_discord.png' %}" style="position:absolute; text-align: left; margin-left:-10%; border-radius: 10%;">
+      <div class="text">
+        <h2>Sobre la autora</h2>
+        <h5>Technical UI Designer</span></h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Nullam ac malesuada turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi vulputate, ipsum bibendum mollis efficitur, diam enim dignissim diam, vitae eleifend nunc velit quis nunc. </p>
+          <p>Integer ipsum lorem, accumsan at lectus id, luctus pretium nunc. Donec sed tincidunt velit. Donec enim magna, tempor eu viverra ac, mattis ac eros. Suspendisse diam odio, dignissim molestie ultricies ut, sollicitudin quis urna. Proin sodales, libero eget pharetra gravida, arcu augue sagittis ligula, id accumsan nibh erat in leo. Nunc dictum volutpat mauris, quis facilisis diam. Praesent ipsum metus, commodo in luctus eu, pretium eget nisi. Sed interdum aliquam gravida. Nulla in dui dignissim, convallis felis eget, aliquam arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean varius eros et velit tincidunt fringilla.</p>
+        <div class="data">
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 {% endblock %}
