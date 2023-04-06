@@ -7,11 +7,10 @@
     <title>Login</title>
 </head>
 <body>
-<form action="{% url 'Posts' %}" method="POST">
-    {% csrf_token %}
-    <p>Título <input type="text" name="titulo"></p>
-    <p>Contenido <input type="text" name="contenido"></p>
-    <input type="submit" value="Publicar"/>
-</form>
+    <form enctype="multipart/form-data" action="{% url 'Posts' %}" method="POST">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <input type="submit" value="Publicar"/>
+    </form>
 </body>
 </html>

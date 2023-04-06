@@ -8,6 +8,9 @@
 </head>
 <body>
 {{ post }}
+{% load static %}
+{% static "" as baseUrl %}
+<img src="{{ baseUrl }}{{post.imagen.name}}"></img>
 
 {% if es_admin %}
     <a href="{% url 'BorrarPost' post.id %}">Borrar!</a>

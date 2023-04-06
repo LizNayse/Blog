@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Posteo, Comentario, RespuestaComentario
 from django.http import HttpResponse
+from .forms import CrearPostForm
 
 # Create your views here.
 def home(request):
@@ -12,12 +13,17 @@ def home(request):
 def posts(request):
     if request.user.is_authenticated and request.user.is_staff:
         if request.method == "POST":
-            titulo = request.POST['titulo']
-            contenido = request.POST['contenido']
-            post = Posteo (titulo=titulo, contenido=contenido, autor=request.user.username)
-            post.save()
-            return redirect(reverse('Home'))
-        return render(request, "AppBlog/crear_post.html")
+            form = CrearPostForm(request.POST, request.FILES)
+            if form.is_valid():
+                titulo = request.POST['titulo']
+                contenido = request.POST['contenido']
+                imagen = request.FILES['imagen']
+                post = Posteo (titulo=titulo, contenido=contenido, autor=request.user.username, imagen = imagen)
+                post.save()
+                return redirect(reverse('Home'))
+        else:
+            form = CrearPostForm()
+        return render(request, "AppBlog/crear_post.html", {'form': form})
     else:
         return redirect(reverse('Home'))
 

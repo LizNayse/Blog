@@ -5,7 +5,7 @@ import datetime
 
 class Posteo(models.Model):
     titulo=models.CharField(max_length=256)
-    #imagen=models.ImageField()
+    imagen=models.FileField(upload_to='imgs/posts')
     contenido=models.CharField(max_length=5000)
     fecha=models.DateTimeField(default=datetime.datetime.now)
     autor=models.CharField(max_length=256)
