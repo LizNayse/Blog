@@ -1,11 +1,10 @@
-<article>
-    <header class="mb-4">
-        <h1 class="fw-bolder mb-1">{{ posteo.titulo }}</h1>
-        <div class="text-muted fst-italic mb-2"><b>Por {{ posteo.autor }} </b>· Publicado el {{ posteo.fecha }}</div>
-    </header>
-    <section class="mb-5">
-        <p class="fs-5 mb-4" style="width: 50ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+<div class="card mb-4">
+    <article class="card-body">
+        <div class="small text-muted"><b>Por {{ posteo.autor }} </b>· Publicado el {{ posteo.fecha }}</div>
+        <h2 class="card-title">{{ posteo.titulo }}</h2>
+        <p class="card-text" style="max-width: 100ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
             {{ posteo.contenido }}
         </p>
-    </section>
-</article>
+        <a class="btn btn-primary" href="{% url 'Posteo' posteo.id %}">Leer completo →</a>
+    </article>
+</div>

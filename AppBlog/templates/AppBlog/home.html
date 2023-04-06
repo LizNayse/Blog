@@ -5,12 +5,8 @@
     {% endif %}
     {% if posts %}
     {% for post in posts %}
-    <li>
-        <a href="{% url 'Posteo' post.id %}">
-            {% load temploader %}
-            {% post_template_reducido post %}
-        </a>
-    </li>
+        {% load temploader %}
+        {% post_template_reducido post %}
     {% endfor %}
     {% else %}
     <h1>No hay posts :(</h1>
