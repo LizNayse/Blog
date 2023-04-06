@@ -1,5 +1,7 @@
+{% load static %}
+{% static "" as baseUrl %}
 <div class="card mb-4" style="max-width:450px;">
-    <img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="...">
+    <img class="card-img-top" style="border:1px solid #000000; overflow-clip-margin: content-box; overflow: clip; max-height:300px;" src="{{ baseUrl }}{{ posteo.imagen.name }}"></img>
     <div class="card-body">
         <div class="small text-muted"><b>Por {{ posteo.autor }} </b>· Publicado el {{ posteo.fecha }}</div>
         <h2 class="card-title h4">{{ posteo.titulo }}</h2>
