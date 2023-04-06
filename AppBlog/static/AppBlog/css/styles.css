@@ -4624,7 +4624,16 @@ textarea.form-control-lg {
 
 .card-group > .card {
   margin-bottom: 0.75rem;
+  
 }
+
+.card-grid-posts {
+	display: grid; 
+	padding: 10px; 
+	column-gap: 10px; 
+	grid-template-columns: repeat(3, 1fr);
+}
+
 @media (min-width: 576px) {
   .card-group {
     display: flex;

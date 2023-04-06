@@ -1,10 +1,11 @@
-<div class="card mb-4">
-    <article class="card-body">
+<div class="card mb-4" style="max-width:450px;">
+    <img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="...">
+    <div class="card-body">
         <div class="small text-muted"><b>Por {{ posteo.autor }} </b>· Publicado el {{ posteo.fecha }}</div>
-        <h2 class="card-title">{{ posteo.titulo }}</h2>
+        <h2 class="card-title h4">{{ posteo.titulo }}</h2>
         <p class="card-text" style="max-width: 100ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
             {{ posteo.contenido }}
         </p>
         <a class="btn btn-primary" href="{% url 'Posteo' posteo.id %}">Leer completo →</a>
-    </article>
+    </div>
 </div>
