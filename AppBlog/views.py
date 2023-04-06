@@ -24,7 +24,7 @@ def posts(request):
                 return redirect(reverse('Home'))
         else:
             form = CrearPostForm()
-        return render(request, "AppBlog/crear_post.html", {'form': form})
+        return render(request, "AppBlog/crear_post.html", {"logeado":request.user.is_authenticated, "es_admin":request.user.is_staff, "form": form})
     else:
         return redirect(reverse('Home'))
 
@@ -35,7 +35,7 @@ def puede_comentar_post(request):
 
 def post(request, post_id):
     posteo = Posteo.objects.get(id=post_id)
-    return render(request, "AppBlog/post.html", { "es_admin": request.user.is_staff, "post":posteo , "puede_comentar": puede_comentar_post(request) })
+    return render(request, "AppBlog/post.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post":posteo , "puede_comentar": puede_comentar_post(request) })
 
 
 def borrar_post(request, post_id):
@@ -49,14 +49,14 @@ def comentar_post(request, post_id):
     contenido = request.POST['contenido']
     comentario = Comentario (post = posteo, contenido = contenido, autor = request.user.username)
     comentario.save()
-    return redirect(reverse('Posteo', kwargs={"post_id": post_id}))
+    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": post_id}))
 
 
 def borrar_comentario(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
     comentario.delete()
-    return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
+    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": posteo.id}))
 
 
 def responder_comentario(request, comentario_id):
@@ -65,18 +65,18 @@ def responder_comentario(request, comentario_id):
     posteo = comentario.post
     respuesta = RespuestaComentario (comentario = comentario, contenido = contenido, autor = request.user.username)
     respuesta.save()
-    return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
+    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": posteo.id}))
 
 
 def borrar_respuesta(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
     comentario.respuestacomentario.delete()
-    return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
+    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": posteo.id}))
 
 
 def perfil(request):
-    return render(request, "AppBlog/perfil.html", { "perfil": request.user })
+    return render(request, "AppBlog/perfil.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "perfil": request.user })
 
 
 def editar_datos(request):
@@ -102,7 +102,7 @@ def editar_datos(request):
             return redirect(reverse('VerPerfil'))
     else:
         form = EditarDatosForm(initial=datos_usuario)
-    return render(request, "AppBlog/perfil.html", { "perfil": usuario, 'form': form })
+    return render(request, "AppBlog/perfil.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "perfil": usuario, "form": form })
 
 
 def cambiar_contrasenia(request):
@@ -113,4 +113,4 @@ def cambiar_contrasenia(request):
             form.save()
             update_session_auth_hash(request, usuario)
             return redirect(reverse('VerPerfil'))
-    return render(request, "AppBlog/cambiar_contrasenia.html", { 'form': form })
+    return render(request, "AppBlog/cambiar_contrasenia.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "form": form })
