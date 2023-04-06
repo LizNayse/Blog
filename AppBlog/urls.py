@@ -14,5 +14,5 @@ urlpatterns = [
     path('perfil', perfil, name="VerPerfil"),
     path('editardatos', editar_datos, name="EditarDatos"),
     path('cambiarcontrasenia', cambiar_contrasenia, name="CambiarContrasenia"),
-    path('acercade', acerca_de, name="AcercaDe")
+    path('about', acerca_de, name="AcercaDe")
 ]
