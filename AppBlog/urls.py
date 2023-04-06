@@ -11,8 +11,8 @@ urlpatterns = [
     path('borrarcomentario/<int:comentario_id>', borrar_comentario, name="BorrarComentario"),
     path('respondercomentario/<int:comentario_id>', responder_comentario, name="ResponderComentario"),
     path('borrarrespuesta/<int:comentario_id>', borrar_respuesta, name="BorrarRespuesta"),
-    path('perfil', perfil, name="VerPerfil"),
-    path('editardatos', editar_datos, name="EditarDatos"),
-    path('cambiarcontrasenia', cambiar_contrasenia, name="CambiarContrasenia"),
+    path('accounts/profile', perfil, name="VerPerfil"),
+    path('accounts/profile/edit', editar_datos, name="EditarDatos"),
+    path('accounts/profile/editpwd', cambiar_contrasenia, name="CambiarContrasenia"),
     path('about', acerca_de, name="AcercaDe")
 ]

@@ -5,7 +5,7 @@ from AppLogin.views import *
 
 
 urlpatterns = [
-    path('login', login_request, name="Login"),
-    path('registro', registro, name="Registro"),
+    path('accounts/login', login_request, name="Login"),
+    path('accounts/signup', registro, name="Registro"),
     path('logout', logout_request, name="Logout"),
 ]
