@@ -35,3 +35,6 @@ class RespuestaComentario(models.Model):
     contenido=models.CharField(max_length=5000)
     fecha=models.DateTimeField(default=datetime.datetime.now)
     autor=models.CharField(max_length=256)
+
+    def __str__(self) -> str:
+        return "%s: %s - %s" % (self.autor, self.contenido, str(self.fecha))

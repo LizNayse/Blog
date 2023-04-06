@@ -25,9 +25,22 @@
     {% for comentario in post.comentario_set.all %}
         <li>
             {{ comentario }}
+            {% if es_admin %}
+                <a href="{% url 'BorrarComentario' comentario.id %}">Borrar!</a>
+            {% endif %}
         </li>
-        {% if es_admin %}
-            <a href="{% url 'BorrarComentario' comentario.id %}">Borrar!</a>
+        {% if comentario.respuestacomentario %}
+            <ul>
+                <li>
+                    Respuesta: {{ comentario.respuestacomentario }} 
+                </li>
+            </ul>
+        {% elif es_admin %}
+            <form action="{% url 'ResponderComentario' comentario.id %}" method="POST">
+                {% csrf_token %}
+                <p>Respuesta<input type="text" name="contenido"></p>
+                <input type="submit" value="Responder"/>
+            </form>
         {% endif %}
     {% endfor %}
 {% else %}

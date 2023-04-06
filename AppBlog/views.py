@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Posteo, Comentario
+from .models import Posteo, Comentario, RespuestaComentario
 from django.http import HttpResponse
 
 # Create your views here.
@@ -49,4 +49,13 @@ def borrar_comentario(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
     comentario.delete()
+    return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
+
+
+def responder_comentario(request, comentario_id):
+    contenido = request.POST['contenido']
+    comentario = Comentario.objects.get(id=comentario_id)
+    posteo = comentario.post
+    respuesta = RespuestaComentario (comentario = comentario, contenido = contenido, autor = request.user.username)
+    respuesta.save()
     return redirect(reverse('Posteo', kwargs={"post_id": posteo.id}))
