@@ -49,14 +49,14 @@ def comentar_post(request, post_id):
     contenido = request.POST['contenido']
     comentario = Comentario (post = posteo, contenido = contenido, autor = request.user.username)
     comentario.save()
-    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": post_id}))
+    return redirect(reverse('Posteo', kwargs={ "post_id": post_id }))
 
 
 def borrar_comentario(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
     comentario.delete()
-    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": posteo.id}))
+    return redirect(reverse('Posteo', kwargs={ "post_id": posteo.id }))
 
 
 def responder_comentario(request, comentario_id):
@@ -65,14 +65,14 @@ def responder_comentario(request, comentario_id):
     posteo = comentario.post
     respuesta = RespuestaComentario (comentario = comentario, contenido = contenido, autor = request.user.username)
     respuesta.save()
-    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": posteo.id}))
+    return redirect(reverse('Posteo', kwargs={ "post_id": posteo.id }))
 
 
 def borrar_respuesta(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
     comentario.respuestacomentario.delete()
-    return redirect(reverse('Posteo', kwargs={ "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post_id": posteo.id}))
+    return redirect(reverse('Posteo', kwargs={ "post_id": posteo.id }))
 
 
 def perfil(request):
@@ -114,6 +114,7 @@ def cambiar_contrasenia(request):
             update_session_auth_hash(request, usuario)
             return redirect(reverse('VerPerfil'))
     return render(request, "AppBlog/cambiar_contrasenia.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "form": form })
+
 
 def acerca_de(request):
     return render(request, "AppBlog/about_us.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "perfil": request.user })
