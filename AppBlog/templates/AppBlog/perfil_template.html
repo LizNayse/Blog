@@ -2,9 +2,9 @@
 {% static "" as baseUrl %}
 <div style="max-width:600px; margin:2% auto 2% auto;">
     <div class="row" style="background-color: #f0f0f0; border-radius: 30px; padding:5px">
-        <div style="position:relative; width:200px">
+        <div style="position:relative; width:200px; height:200px">
             {% if perfil.imagen %}
-                <img class="card-img-top" style="overflow-clip-margin: content-box; overflow: clip; text-align: left; width:200px; height:200px; border-radius: 50%;" src="{{ baseUrl }}{{perfil.imagen.name}}"></img>
+                <img style=" object-fit: contain; width:100%; height:100%; border-radius: 50%;" src="{{ baseUrl }}{{perfil.imagen.name}}"></img>
             {% endif %}
         </div>
         <div style="position:relative; max-width:400px; padding-left:5%;">
