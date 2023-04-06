@@ -31,12 +31,11 @@
                                 {% endif %}
                                 {% if comentario.respuestacomentario %}
                                     <ul>
-                                        <li>
-                                            {{ comentario.respuestacomentario }}
+                                            {% load temploader %}
+                                            {% respuesta_comentario_template comentario %}
                                             {% if es_admin %}
                                                 <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'BorrarRespuesta' comentario.id %}">Borrar!</a>
                                             {% endif %}
-                                        </li>
                                     </ul>
                                 {% elif es_admin %}
                                     <form action="{% url 'ResponderComentario' comentario.id %}" method="POST">

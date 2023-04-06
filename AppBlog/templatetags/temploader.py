@@ -17,3 +17,7 @@ def perfil_template(usuario):
 @register.inclusion_tag("AppBlog/comentario_template.html")
 def comentario_template(comentario):
     return {"comentario":comentario}
+
+@register.inclusion_tag("AppBlog/respuesta_comentario_template.html")
+def respuesta_comentario_template(comentario):
+    return {"comentario":comentario}
