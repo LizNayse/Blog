@@ -12,7 +12,8 @@ Blog "¿Qué se come?" orientado a compartir artículos de cocina
 
 Página Web destinada a usuarios que quieran publicar, comentar y recibir ideas para recetas de cocina diaria.
 
-No será requerimiento iniciar sesiòn o registrarse para poder ver los artículos publicados. Pero para poder acceder a las opciones de mensajería del blog y poder dejar comentarios, a lxs usuarixs les será requerido iniciar sesión o registrarse. 
+No será requerimiento iniciar sesiòn o registrarse para poder ver los artículos publicados, pero para poder acceder a las opciones de mensajería del blog y poder dejar comentarios, a lxs usuarixs les será requerido iniciar sesión o registrarse. 
+
 Para poder crear artículos, editarlos, responder directamente a los comentarios y borrarlos; los usuarios deben contar además con permiso de "staff".
 Este permiso sólo lo puede otorgar el / la administrador desde el panel.
 Estas opciones no estarán visibles para usuarios comunes.
