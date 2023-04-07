@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import update_session_auth_hash
 from .forms import CrearPostForm, EditarDatosForm, CambiarContraseniaForm
 from .models import Posteo, Comentario, RespuestaComentario
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 # Create your views here.
@@ -38,12 +39,15 @@ def post(request, post_id):
     return render(request, "AppBlog/post.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "post":posteo , "puede_comentar": puede_comentar_post(request) })
 
 
+@login_required(login_url="Login")
+@permission_required("is_staff", raise_exception=True)
 def borrar_post(request, post_id):
     posteo = Posteo.objects.get(id=post_id)
     posteo.delete()
     return redirect(reverse('Home'))
 
 
+@login_required(login_url="Login")
 def comentar_post(request, post_id):
     posteo = Posteo.objects.get(id=post_id)
     contenido = request.POST['contenido']
@@ -52,6 +56,8 @@ def comentar_post(request, post_id):
     return redirect(reverse('Posteo', kwargs={ "post_id": post_id }))
 
 
+@login_required(login_url="Login")
+@permission_required("is_staff", raise_exception=True)
 def borrar_comentario(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
@@ -59,6 +65,8 @@ def borrar_comentario(request, comentario_id):
     return redirect(reverse('Posteo', kwargs={ "post_id": posteo.id }))
 
 
+@login_required(login_url="Login")
+@permission_required("is_staff", raise_exception=True)
 def responder_comentario(request, comentario_id):
     contenido = request.POST['contenido']
     comentario = Comentario.objects.get(id=comentario_id)
@@ -68,6 +76,8 @@ def responder_comentario(request, comentario_id):
     return redirect(reverse('Posteo', kwargs={ "post_id": posteo.id }))
 
 
+@login_required(login_url="Login")
+@permission_required("is_staff", raise_exception=True)
 def borrar_respuesta(request, comentario_id):
     comentario = Comentario.objects.get(id=comentario_id)
     posteo = comentario.post
@@ -75,10 +85,12 @@ def borrar_respuesta(request, comentario_id):
     return redirect(reverse('Posteo', kwargs={ "post_id": posteo.id }))
 
 
+@login_required(login_url="Login")
 def perfil(request):
     return render(request, "AppBlog/perfil.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "perfil": request.user })
 
 
+@login_required(login_url="Login")
 def editar_datos(request):
     usuario = request.user
     datos_usuario = {
@@ -105,6 +117,7 @@ def editar_datos(request):
     return render(request, "AppBlog/perfil.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "perfil": usuario, "form": form })
 
 
+@login_required(login_url="Login")
 def cambiar_contrasenia(request):
     usuario = request.user
     if request.method == "POST":
