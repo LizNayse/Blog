@@ -1,5 +1,8 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
+<style>
+    .errorlist{list-style: none; color:red;}
+</style>
 <div style="max-width:600px; margin:3% auto 5% auto">
     <h1>Cambiar contraseña</h1>
     <form class="form-control" action="{% url 'CambiarContrasenia' %}" method="POST">

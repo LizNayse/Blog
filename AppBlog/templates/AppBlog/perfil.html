@@ -3,6 +3,9 @@
     {% load static %}
     {% static "" as baseUrl %}
     {% if form %}
+        <style>
+            .errorlist{list-style: none; color:red;}
+        </style>
         <div style="max-width:600px; margin:2% auto 2% auto; padding:8px 9px;">
             <h2>Editar perfil</h2><br>
             <form class="form-control" enctype="multipart/form-data" action="{% url 'EditarDatos' %}" method="POST">

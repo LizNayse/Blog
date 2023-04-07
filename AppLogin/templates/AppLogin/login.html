@@ -1,15 +1,15 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
+<style>
+    .errorlist{list-style: none; color:red;}
+</style>
 <div style="text-align: center; margin-top:10%; margin-bottom:10%;">
+    <h3>¡Bienvenido/a!</h3>
+    <h5>Ingresa tu nombre de usuario y contraseña para ingresar</h5><br>
     <form class="form-control" action="" method="POST" style="padding:2%; max-width: 50%; margin: auto;">
         {% csrf_token %}
             {{ form.as_p }}
         <button class="btn btn-primary" type="submit">Iniciar sesión</button>
     </form>
-    {% if mensaje %}
-        <br>
-        <h5 style="color:red">{{ mensaje }}</h5>
-        <br>
-    {% endif %}
 </div>
 {% endblock %}

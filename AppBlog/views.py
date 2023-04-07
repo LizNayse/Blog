@@ -107,12 +107,14 @@ def editar_datos(request):
 
 def cambiar_contrasenia(request):
     usuario = request.user
-    form = CambiarContraseniaForm(usuario, request.POST)
     if request.method == "POST":
+        form = CambiarContraseniaForm(usuario, request.POST)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, usuario)
             return redirect(reverse('VerPerfil'))
+    else:
+        form = CambiarContraseniaForm(usuario)
     return render(request, "AppBlog/cambiar_contrasenia.html", { "logeado":request.user.is_authenticated, "es_admin": request.user.is_staff, "form": form })
 
 
