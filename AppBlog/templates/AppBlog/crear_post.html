@@ -1,6 +1,8 @@
 {% extends "AppBlog/base.html" %}
 {% block content %}
-<div style="text-align: center; margin-top:4%; margin-bottom:4%;">
+<div style="text-align: center; margin-top:4%; margin-bottom:5%;">
+    <h3>Crea y publica un artículo</h3>
+    <h5>Para crear un artículo ten en cuenta que la imagen es obligatoria.</h5><br>
     <form class="form-control" enctype="multipart/form-data" action="{% url 'Posts' %}" method="POST" style="padding:2%; max-width: 50%; margin: auto;">
         {% csrf_token %}
             {{ form.as_p }}
