@@ -37,8 +37,11 @@ Los usuarios administradores "staff" pueden realizar las mismas acciones y se le
 
 ## Casos de prueba
 
-Ver el archivo "Pruebas_Proyecto_Blog.xlsx" el cual se encuentra en el siguiente link:
+Ver el archivo "Blog - Casos de prueba.xlsx" el cual se encuentra en el siguiente link:
+https://docs.google.com/spreadsheets/d/1dzsfmOrtxDLVFnKuvfs0jDDuqI-NFK1uOjCZEy-OJzE/edit?usp=sharing
 
 ## Video demostración
+
+https://drive.google.com/file/d/1qzHjVZ0dggVX61_XNuNXqnkkzjrt2_0O/view?usp=share_link
 
 
