@@ -15,7 +15,7 @@ Página Web destinada a usuarios que quieran publicar, comentar y recibir ideas 
 No será requerimiento iniciar sesiòn o registrarse para poder ver los artículos publicados, pero para poder acceder a las opciones de mensajería del blog y poder dejar comentarios, a lxs usuarixs les será requerido iniciar sesión o registrarse. 
 
 Para poder crear artículos, editarlos, responder directamente a los comentarios y borrarlos; los usuarios deben contar además con permiso de "staff".
-Este permiso sólo lo puede otorgar el / la administrador desde el panel.
+Este permiso sólo lo puede otorgar el / la administrador desde el panel de administración (host:port/admin/).
 Estas opciones no estarán visibles para usuarios comunes.
 
 Los usuarios comunes pueden realizar las siguientes accciones:
